@@ -18,7 +18,7 @@ let type_provider_articles_titles =
     |> Seq.map (fun el -> el.Attribute "href")
     |> Seq.map (fun el -> el.Value())
     |> Seq.map ((+) base_url)
-    |> Seq.map (HTML.AsyncLoad) // using the same type because all these pages look the same
+    |> Seq.map (HTML.AsyncLoad) // using the same type because all these pages look the same, if they did not look the same then we would need another type to represent them
     |> Async.Parallel
     |> Async.RunSynchronously
     |> Seq.map (fun site -> site.Html.CssSelect "h1" |> Seq.head)
